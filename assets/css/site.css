@@ -732,8 +732,6 @@ details.table-view summary { cursor: pointer; font-weight: 700; min-height: 44px
 .about .study-grid { margin-top: clamp(3.5rem, 7vw, 5.5rem); }
 .about .off-map-link { margin-top: clamp(3rem, 6vw, 4.5rem); }
 
-.writing-link { margin-top: clamp(2rem, 4vw, 3rem); display: flex; flex-wrap: wrap; align-items: baseline; gap: 0.5rem 1rem; font-size: 1.15rem; }
-.writing-link span { font-family: var(--mono); font-size: 0.85rem; color: var(--on-dark-soft); }
-.writing-link a { display: inline-flex; align-items: center; gap: 0.5rem; min-height: 44px; font-weight: 700; color: #fff; text-decoration-color: var(--rose); }
-.writing-link svg { width: 1rem; height: 1rem; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform 200ms var(--ease-out); }
-@media (hover: hover) and (pointer: fine) { .writing-link a:hover svg { transform: translateX(4px); } }
+.writing-head { margin-top: clamp(3.5rem, 7vw, 5rem); }
+.writing-title { font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 800; letter-spacing: -0.03em; }
+.ix-software { --c1: var(--sand); }
