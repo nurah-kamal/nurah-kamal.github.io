@@ -1,4 +1,4 @@
-import { LINES, STATIONS } from './projects.js';
+import { LINES, STATIONS } from './projects.js?v=20261026b';
 
 const SVG = 'http://www.w3.org/2000/svg';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -211,8 +211,8 @@ function buildIndex(list) {
 /* ---------- work by field ---------- */
 
 const ICON = {
-  out: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" /></svg>',
-  in: '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>',
+  out: '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12" /></svg>',
+  in: '<svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" /></svg>',
 };
 
 function linkTo(href, label, kind) {
