@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SA Turnaround case study · Nurah Kamal</title>
+<meta name="description" content="How counting calendar days blamed a service desk for South African public holidays, and how working days, SQL and tests found the one real delay: refunds.">
+<link rel="canonical" href="https://nurah-kamal.github.io/work/sa-turnaround/">
+<meta name="theme-color" content="#F7F3F0">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Nurah Kamal">
+<meta property="og:title" content="SA Turnaround case study · Nurah Kamal">
+<meta property="og:description" content="How counting calendar days blamed a service desk for South African public holidays, and how working days, SQL and tests found the one real delay: refunds.">
+<meta property="og:url" content="https://nurah-kamal.github.io/work/sa-turnaround/">
+<meta property="og:image" content="https://nurah-kamal.github.io/assets/img/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nurah Kamal, Data, reporting and BI, Cape Town, over five coloured lines that join at one station, like a transit map.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/icon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://nurah-kamal.github.io/work/sa-turnaround/#page",
+      "url": "https://nurah-kamal.github.io/work/sa-turnaround/",
+      "name": "SA Turnaround case study · Nurah Kamal",
+      "description": "How counting calendar days blamed a service desk for South African public holidays, and how working days, SQL and tests found the one real delay: refunds.",
+      "isPartOf": { "@id": "https://nurah-kamal.github.io/#site" },
+      "author": { "@id": "https://nurah-kamal.github.io/#nurah" },
+      "inLanguage": "en-ZA",
+      "datePublished": "2026-10-25",
+      "dateModified": "2026-10-25"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nurah-kamal.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "SA Turnaround", "item": "https://nurah-kamal.github.io/work/sa-turnaround/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Nurah Kamal, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="#D9C6BF"/><path d="M6 12H26M6 20H26" stroke="#4A2536" stroke-width="3" stroke-linecap="round"/><rect x="11.5" y="7.5" width="9" height="17" rx="4.5" fill="#fff" stroke="#4A2536" stroke-width="2.5"/></svg>
+      <span>Nurah Kamal</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work">Work</a>
+      <a href="/#case-studies" aria-current="page">Case studies</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#line-reporting">Reporting</a></li>
+        <li><span aria-current="page">SA Turnaround</span></li>
+      </ol>
+    </nav>
+
+    <header class="study-hero">
+      <h1>SA Turnaround</h1>
+      <p class="study-lede">Counting calendar days blamed a service desk for South Africa&rsquo;s public holidays. Counted in working days, only one real problem was left.</p>
+      <dl class="facts">
+        <div><dt>Line</dt><dd><span class="line-block line-reporting"><span class="line-pill">Reporting</span></span></dd></div>
+        <div><dt>Built with</dt><dd>JavaScript, SQL, SQLite, SVG</dd></div>
+        <div><dt>Data</dt><dd>5,719 invented requests, 2023&ndash;2025</dd></div>
+        <div><dt>Checks</dt><dd>21 tests in CI</dd></div>
+      </dl>
+      <p class="here line-reporting"><span class="here-line" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span></span>Stop 1 of 4 on the Reporting line</p>
+      <p class="study-actions">
+        <a class="btn btn-solid" href="https://nurah-kamal.github.io/reporting/sa-turnaround/" rel="noopener">Open the live report <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12"/></svg></a>
+        <a class="btn btn-line" href="https://github.com/nurah-kamal/reporting/tree/main/sa-turnaround" rel="noopener">Read the code</a>
+      </p>
+    </header>
+
+    <div class="study">
+      <section class="chapter" aria-labelledby="q">
+        <h2 id="q">The question</h2>
+        <div class="chapter-body">
+          <p>Turnaround reports usually subtract one date from another and call it done. But a service desk&rsquo;s targets are written in working days: two, three or five of them. Checked in calendar days, every weekend and public holiday inside a request counts against the desk.</p>
+          <p>So: how much does counting the wrong days change the picture, and once that&rsquo;s out of the way, which delays are real?</p>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="f">
+        <h2 id="f">What I found</h2>
+        <div class="chapter-body wide">
+          <p class="big-find">Counting calendar days marked <b>1,183</b> requests late. <b>283</b> of those were on time once public holidays were counted, and <b>160</b> real delays slipped through.</p>
+          <figure class="figure">
+            <div class="figure-frame">
+              <svg class="fig-wide" viewBox="0 0 640 280" role="img" aria-labelledby="fig1-t fig1-d">
+                <title id="fig1-t">Requests called late under each count</title>
+                <desc id="fig1-d">Calendar days call 1,183 requests late: 900 that both counts agree on, plus 283 that were on time in working days. Working days call 1,060 late: the same 900, plus 160 real delays the calendar count missed.</desc>
+                <defs>
+                  <pattern id="hatch1" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#9C4A68"/><rect width="2.5" height="7" fill="#B8738F"/></pattern>
+                </defs>
+                <text class="fig-title" x="0" y="20">Requests called late, by how the days are counted</text>
+                <text class="fig-label" x="0" y="88">Calendar days</text>
+                <text class="fig-label" x="0" y="178">Working days</text>
+                <path class="fig-axis" d="M150 50V240"/>
+                <rect x="150" y="66" width="334.7" height="34" rx="4" fill="#4A2536"><title>Both counts agree: 900</title></rect>
+                <rect x="486.7" y="66" width="105.3" height="34" rx="4" fill="url(#hatch1)"><title>Wrongly late: 283</title></rect>
+                <text class="fig-value" x="600" y="88">1,183</text>
+                <rect x="150" y="156" width="334.7" height="34" rx="4" fill="#4A2536"><title>Both counts agree: 900</title></rect>
+                <rect x="486.7" y="156" width="59.5" height="34" rx="4" fill="#2F6F7E"><title>Missed by calendar days: 160</title></rect>
+                <text class="fig-value" x="554" y="178">1,060</text>
+                <text class="fig-muted" x="158" y="120">900 late by both counts</text>
+                <text class="fig-muted" x="490" y="120">283 wrongly late</text>
+                <text class="fig-muted" x="490" y="210">160 missed</text>
+                <text class="fig-muted" x="0" y="268">Closed requests only (5,706). Synthetic data.</text>
+              </svg>
+              <svg class="fig-narrow" viewBox="0 0 360 310" role="img" aria-labelledby="fig1n-t fig1n-d">
+                <title id="fig1n-t">Requests called late under each count</title>
+                <desc id="fig1n-d">Calendar days call 1,183 requests late: 900 that both counts agree on, plus 283 that were on time in working days. Working days call 1,060 late: the same 900, plus 160 real delays the calendar count missed.</desc>
+                <defs><pattern id="hatch1n" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><rect width="7" height="7" fill="#9C4A68"/><rect width="2.5" height="7" fill="#B8738F"/></pattern></defs>
+                <text class="fig-title" x="0" y="20">Requests called late,</text>
+                <text class="fig-title" x="0" y="40">by how the days are counted</text>
+                <text class="fig-label" x="0" y="72">Calendar days</text>
+                <rect x="0" y="82" width="228.2" height="30" rx="4" fill="#4A2536"><title>Both counts agree: 900</title></rect>
+                <rect x="230.2" y="82" width="71.8" height="30" rx="4" fill="url(#hatch1n)"><title>Wrongly late: 283</title></rect>
+                <text class="fig-value" x="308" y="102">1,183</text>
+                <text class="fig-muted" x="0" y="132">900 by both</text>
+                <text class="fig-muted" x="302" y="132" text-anchor="end">283 wrongly late</text>
+                <text class="fig-label" x="0" y="172">Working days</text>
+                <rect x="0" y="182" width="228.2" height="30" rx="4" fill="#4A2536"><title>Both counts agree: 900</title></rect>
+                <rect x="230.2" y="182" width="40.6" height="30" rx="4" fill="#2F6F7E"><title>Missed by calendar days: 160</title></rect>
+                <text class="fig-value" x="277" y="202">1,060</text>
+                <text class="fig-muted" x="0" y="232">900 by both</text>
+                <text class="fig-muted" x="230" y="232">160 missed</text>
+                <text class="fig-muted" x="0" y="292">Closed requests (5,706). Synthetic data.</text>
+              </svg>
+            </div>
+            <figcaption>The calendar count was given a fair chance: its target is stretched for weekends, so the only thing left for it to get wrong is public holidays.</figcaption>
+            <details class="table-view">
+              <summary>Show the numbers as a table</summary>
+              <div class="table-scroll">
+                <table class="data-table">
+                  <thead><tr><th scope="col">Count</th><th scope="col">Late by both</th><th scope="col">Only this count</th><th scope="col">Total late</th></tr></thead>
+                  <tbody>
+                    <tr><th scope="row">Calendar days</th><td>900</td><td>283 wrongly late</td><td>1,183</td></tr>
+                    <tr><th scope="row">Working days</th><td>900</td><td>160 missed by calendar days</td><td>1,060</td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </details>
+          </figure>
+          <p>With holidays out of the way, one real problem was left: <strong>refunds</strong>, which went from 19% late to 56% after a second sign-off step was added in July 2025. No other category moved.</p>
+          <p>Complaints did jump to 34% late for one quarter, then fell back to 16%. With about 40 complaints a quarter that is noise, and the write-up says so rather than calling it a second finding.</p>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="c">
+        <h2 id="c">How I checked it</h2>
+        <div class="chapter-body">
+          <ul>
+            <li><strong>Measured in the unit the target is written in.</strong> A &ldquo;3 working day&rdquo; target is checked in working days.</li>
+            <li><strong>Every number on the page comes from SQL.</strong> Each chart names the file that produced it, under the chart. Nothing is typed in by hand.</li>
+            <li><strong>Two independent answers are made to agree.</strong> SQL works out working days from a calendar table; a JavaScript library works them out day by day. For all 5,706 closed requests the two are compared, and the tests fail if they ever disagree.</li>
+            <li><strong>Planted, then found.</strong> The data generator planted one change, the refund sign-off. The tests check that the analysis still finds it and that no other category moved. The holiday effect wasn&rsquo;t planted: it comes from the calendar alone.</li>
+            <li><strong>A holiday is sourced, not remembered.</strong> The library follows the Public Holidays Act, including the Sunday rule, and every once-off declared day is listed with the page it was checked against.</li>
+            <li><strong>No person is in the data.</strong> Not a real one and not a made-up one.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="p">
+        <h2 id="p">The principle behind it</h2>
+        <div class="chapter-body">
+          <div class="principle">
+            <strong>Check the source before trusting the number.</strong>
+            <p>Often the interesting part isn&rsquo;t the analysis; it&rsquo;s finding out whether the data is telling the truth in the first place. Here the late rate looked like a performance problem, and most of it was a counting problem.</p>
+          </div>
+          <p>The idea comes from reporting I do professionally, where turnaround has to account for South African public holidays. This version was rebuilt from scratch on invented data, and no work code or data is in it.</p>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="k">
+        <h2 id="k">Worth knowing</h2>
+        <div class="chapter-body">
+          <ul>
+            <li>The data is synthetic. It shows the method, not any real organisation&rsquo;s performance.</li>
+            <li>National holidays only. Provincial days off and company shutdowns are out of scope.</li>
+            <li>A working day starts the day after opening: a request opened and closed on the same day took 0 working days.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <aside class="next-study line-bi">
+    <div class="wrap">
+      <a href="/work/power-bi-turnaround/">
+        <strong>Change here: Power BI Turnaround</strong>
+      </a>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Apart from Firefly, everything here runs on public or invented data. Where a project is based on my work, it was rebuilt from scratch with synthetic data, and no work code or data is in it.</p>
+    <p><a href="mailto:nurahkamal23@gmail.com">nurahkamal23@gmail.com</a> · Nurah Kamal, Cape Town, 2026.</p>
+  </div>
+</footer>
+</body>
+</html>

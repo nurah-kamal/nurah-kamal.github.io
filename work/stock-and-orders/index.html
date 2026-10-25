@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Stock and Orders SQL case study · Nurah Kamal</title>
+<meta name="description" content="Thirteen business questions about a wholesaler's orders and stock, each answered in plain SQL and tested, tracing customers' missing units to one late supplier.">
+<link rel="canonical" href="https://nurah-kamal.github.io/work/stock-and-orders/">
+<meta name="theme-color" content="#F7F3F0">
+<meta name="color-scheme" content="light">
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="Nurah Kamal">
+<meta property="og:title" content="Stock and Orders SQL case study · Nurah Kamal">
+<meta property="og:description" content="Thirteen business questions about a wholesaler's orders and stock, each answered in plain SQL and tested, tracing customers' missing units to one late supplier.">
+<meta property="og:url" content="https://nurah-kamal.github.io/work/stock-and-orders/">
+<meta property="og:image" content="https://nurah-kamal.github.io/assets/img/share.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Nurah Kamal, Data, reporting and BI, Cape Town, over five coloured lines that join at one station, like a transit map.">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/img/icon-48.png" type="image/png" sizes="48x48">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
+<link rel="preload" href="/assets/fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebPage",
+      "@id": "https://nurah-kamal.github.io/work/stock-and-orders/#page",
+      "url": "https://nurah-kamal.github.io/work/stock-and-orders/",
+      "name": "Stock and Orders SQL case study · Nurah Kamal",
+      "description": "Thirteen business questions about a wholesaler's orders and stock, each answered in plain SQL and tested, tracing customers' missing units to one late supplier.",
+      "isPartOf": { "@id": "https://nurah-kamal.github.io/#site" },
+      "author": { "@id": "https://nurah-kamal.github.io/#nurah" },
+      "inLanguage": "en-ZA",
+      "datePublished": "2026-10-25",
+      "dateModified": "2026-10-25"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://nurah-kamal.github.io/" },
+        { "@type": "ListItem", "position": 2, "name": "Stock and Orders", "item": "https://nurah-kamal.github.io/work/stock-and-orders/" }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="/" aria-label="Nurah Kamal, home">
+      <svg class="brand-mark" viewBox="0 0 32 32" aria-hidden="true"><rect x="2" y="2" width="28" height="28" rx="8" fill="#D9C6BF"/><path d="M6 12H26M6 20H26" stroke="#4A2536" stroke-width="3" stroke-linecap="round"/><rect x="11.5" y="7.5" width="9" height="17" rx="4.5" fill="#fff" stroke="#4A2536" stroke-width="2.5"/></svg>
+      <span>Nurah Kamal</span>
+    </a>
+    <nav class="nav" aria-label="Main">
+      <a href="/#work">Work</a>
+      <a href="/#case-studies" aria-current="page">Case studies</a>
+      <a href="/#experience">Experience</a>
+      <a href="/#about">About</a>
+      <a href="/#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <div class="wrap">
+    <nav class="crumbs" aria-label="Breadcrumb">
+      <ol>
+        <li><a href="/">Home</a></li>
+        <li><a href="/#line-analysis">Analysis</a></li>
+        <li><span aria-current="page">Stock and Orders</span></li>
+      </ol>
+    </nav>
+
+    <header class="study-hero">
+      <h1>Stock and Orders</h1>
+      <p class="study-lede">Thirteen business questions about a made-up wholesaler, each answered in one plain SQL file. The biggest answer was one supplier.</p>
+      <dl class="facts">
+        <div><dt>Line</dt><dd><span class="line-block line-analysis"><span class="line-pill">Analysis</span></span></dd></div>
+        <div><dt>Built with</dt><dd>SQL, SQLite, Node</dd></div>
+        <div><dt>Data</dt><dd>Two years of simulated trading, fixed seed</dd></div>
+        <div><dt>Checks</dt><dd>13 tests in CI</dd></div>
+      </dl>
+      <p class="here line-analysis"><span class="here-line" aria-hidden="true"><span class="on"></span><span></span><span></span></span>Stop 1 of 3 on the Analysis line</p>
+      <p class="study-actions">
+        <a class="btn btn-solid" href="https://github.com/nurah-kamal/data-analysis/tree/main/sql-ops" rel="noopener">Read the SQL <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M6 3h7v7M13 3 4 12"/></svg></a>
+        <a class="btn btn-line" href="https://github.com/nurah-kamal/data-analysis/blob/main/sql-ops/docs/ANSWERS.md" rel="noopener">See every answer</a>
+      </p>
+    </header>
+
+    <div class="study">
+      <section class="chapter" aria-labelledby="q">
+        <h2 id="q">The question</h2>
+        <div class="chapter-body">
+          <p>A wholesaler sells 48 products from three warehouses. The questions are the ones a business actually asks: how did the year go, which products make the money, do suppliers deliver when they promise, what&rsquo;s about to run out, and do new customers come back?</p>
+          <p>Each question is one SQL file, and the comment at the top of the file is the question. A test fails if a file doesn&rsquo;t say what it asks.</p>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="f">
+        <h2 id="f">What I found</h2>
+        <div class="chapter-body wide">
+          <p class="big-find">One supplier, S04, started delivering late in March 2025. By the second half of the year, customers were going without about <b>one in six</b> of the units they ordered from its range.</p>
+          <figure class="figure">
+            <div class="figure-frame">
+              <svg class="fig-wide" viewBox="0 0 640 280" role="img" aria-labelledby="fig2-t fig2-d">
+                <title id="fig2-t">Supplier S04 average lead time by quarter</title>
+                <desc id="fig2-d">Against a promised 7 days: 6.0 days in 2024 Q4, 9.6 in 2025 Q1, 15.3 in Q2, 15.0 in Q3 and 15.5 in Q4.</desc>
+                <text class="fig-title" x="0" y="20">Supplier S04: average lead time, in days</text>
+                <path class="fig-axis" d="M70 230H610M70 177.2H610M70 124.4H610M70 71.7H610"/>
+                <text class="fig-muted" x="58" y="234" text-anchor="end">0</text>
+                <text class="fig-muted" x="58" y="181" text-anchor="end">5</text>
+                <text class="fig-muted" x="58" y="128" text-anchor="end">10</text>
+                <text class="fig-muted" x="58" y="76" text-anchor="end">15</text>
+                <path class="fig-ref" d="M70 156.1H610"/>
+                <text class="fig-label" x="606" y="148" text-anchor="end" fill="#2F6F7E">Promised: 7 days</text>
+                <path d="M110 166.7L230 128.7L350 68.5L470 71.7L590 66.4" fill="none" stroke="#4A2536" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                <g fill="#4A2536" stroke="#fff" stroke-width="2">
+                  <circle cx="110" cy="166.7" r="5.5"><title>2024 Q4: 6.0 days</title></circle>
+                  <circle cx="230" cy="128.7" r="5.5"><title>2025 Q1: 9.6 days</title></circle>
+                  <circle cx="350" cy="68.5" r="5.5"><title>2025 Q2: 15.3 days</title></circle>
+                  <circle cx="470" cy="71.7" r="5.5"><title>2025 Q3: 15.0 days</title></circle>
+                  <circle cx="590" cy="66.4" r="5.5"><title>2025 Q4: 15.5 days</title></circle>
+                </g>
+                <text class="fig-value" x="110" y="190" text-anchor="middle">6.0</text>
+                <text class="fig-value" x="230" y="117" text-anchor="middle">9.6</text>
+                <text class="fig-value" x="350" y="54" text-anchor="middle">15.3</text>
+                <text class="fig-value" x="590" y="52" text-anchor="middle">15.5</text>
+                <text class="fig-muted" x="110" y="256" text-anchor="middle">2024 Q4</text>
+                <text class="fig-muted" x="230" y="256" text-anchor="middle">2025 Q1</text>
+                <text class="fig-muted" x="350" y="256" text-anchor="middle">Q2</text>
+                <text class="fig-muted" x="470" y="256" text-anchor="middle">Q3</text>
+                <text class="fig-muted" x="590" y="256" text-anchor="middle">Q4</text>
+              </svg>
+              <svg class="fig-narrow" viewBox="0 0 360 290" role="img" aria-labelledby="fig2n-t fig2n-d">
+                <title id="fig2n-t">Supplier S04 average lead time by quarter</title>
+                <desc id="fig2n-d">Against a promised 7 days: 6.0 days in 2024 Q4, 9.6 in 2025 Q1, 15.3 in Q2, 15.0 in Q3 and 15.5 in Q4.</desc>
+                <text class="fig-title" x="0" y="20">Supplier S04: lead time, in days</text>
+                <path class="fig-axis" d="M34 250H350M34 194.4H350M34 138.9H350M34 83.3H350"/>
+                <text class="fig-muted" x="26" y="254" text-anchor="end">0</text>
+                <text class="fig-muted" x="26" y="199" text-anchor="end">5</text>
+                <text class="fig-muted" x="26" y="143" text-anchor="end">10</text>
+                <text class="fig-muted" x="26" y="88" text-anchor="end">15</text>
+                <path class="fig-ref" d="M34 172.2H350"/>
+                <text class="fig-label" x="348" y="193" text-anchor="end" fill="#2F6F7E">Promised: 7</text>
+                <path d="M55 183.3L125 143.3L195 80L265 83.3L330 77.8" fill="none" stroke="#4A2536" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+                <g fill="#4A2536" stroke="#fff" stroke-width="2">
+                  <circle cx="55" cy="183.3" r="5.5"><title>2024 Q4: 6.0 days</title></circle>
+                  <circle cx="125" cy="143.3" r="5.5"><title>2025 Q1: 9.6 days</title></circle>
+                  <circle cx="195" cy="80" r="5.5"><title>2025 Q2: 15.3 days</title></circle>
+                  <circle cx="265" cy="83.3" r="5.5"><title>2025 Q3: 15.0 days</title></circle>
+                  <circle cx="330" cy="77.8" r="5.5"><title>2025 Q4: 15.5 days</title></circle>
+                </g>
+                <text class="fig-value" x="55" y="168" text-anchor="middle">6.0</text>
+                <text class="fig-value" x="125" y="130" text-anchor="middle">9.6</text>
+                <text class="fig-value" x="195" y="66" text-anchor="middle">15.3</text>
+                <text class="fig-value" x="330" y="64" text-anchor="middle">15.5</text>
+                <text class="fig-muted" x="55" y="274" text-anchor="middle">Q4 2024</text>
+                <text class="fig-muted" x="125" y="274" text-anchor="middle">Q1 2025</text>
+                <text class="fig-muted" x="195" y="274" text-anchor="middle">Q2</text>
+                <text class="fig-muted" x="265" y="274" text-anchor="middle">Q3</text>
+                <text class="fig-muted" x="330" y="274" text-anchor="middle">Q4</text>
+              </svg>
+            </div>
+            <figcaption>From <code>05_supplier_lead_times.sql</code>. Synthetic data.</figcaption>
+          </figure>
+          <div class="table-scroll">
+            <table class="data-table">
+              <caption class="visually-hidden">Supplier S04 by quarter</caption>
+              <thead><tr><th scope="col">Supplier S04</th><th scope="col">2024 Q4</th><th scope="col">2025 Q1</th><th scope="col">Q2</th><th scope="col">Q3</th><th scope="col">Q4</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Deliveries later than promised</th><td>12%</td><td>44%</td><td>100%</td><td>100%</td><td>100%</td></tr>
+                <tr><th scope="row">Units ordered that could be shipped</th><td>99.2%</td><td>97.2%</td><td>93.9%</td><td>82.5%</td><td>84.9%</td></tr>
+                <tr><th scope="row">Revenue lost to missing stock</th><td>R23k</td><td>R57k</td><td>R86k</td><td>R420k</td><td>R411k</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>The slip cost about R974,000 in lost sales in 2025, against R76,000 in 2024. It cuts across two categories, fasteners and plumbing, so it only shows once products are joined to their supplier. Every other supplier shipped more than 96.5% of what was ordered in every quarter of 2025.</p>
+          <p>The other questions turned up more:</p>
+          <ul>
+            <li>Revenue was R115.6 million in 2024 and R169.9 million in 2025, at a 23% gross margin. 14 of the 48 products made 80% of 2025 revenue.</li>
+            <li>A Black Friday promotion brought in 235 new customers. 18.7% of them ordered again within 90 days; in every other month it was between 77% and 100%.</li>
+            <li>Paint sells the roller kit: about 45% of orders with wall, roof or primer paint include it, a lift of 3.5 to 3.9.</li>
+            <li>The top tenth of customers brought in 52.6% of 2025 revenue, and every one of them is a retail store.</li>
+            <li>Most of the slow stock by value is imported power tools, because the supplier&rsquo;s minimum order is a month or more of sales at a single warehouse.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="c">
+        <h2 id="c">How I checked it</h2>
+        <div class="chapter-body">
+          <ul>
+            <li><strong>Two independent answers are made to agree.</strong> The generator tracks stock day by day in JavaScript; SQL rebuilds it from opening stock, deliveries and shipments. The tests compare the two for every product in all three warehouses, and check that a running ledger never goes below zero.</li>
+            <li><strong>Planted, then found.</strong> The generator plants three things: a supplier that starts delivering late, a promotion that brings in customers who don&rsquo;t come back, and a product pair bought together. Switch the plants off and those tests fail, while the rest still pass.</li>
+            <li><strong>Not everything is planted.</strong> The slow stock comes from the supplier&rsquo;s minimum order quantity, and the write-up says which findings were planted and which arose on their own.</li>
+            <li><strong>Demand is what was ordered, not what shipped.</strong> Measured on shipped units, a stockout would hide itself.</li>
+            <li><strong>The SQL is plain and readable:</strong> CTEs, joins and window functions (<code>LAG</code>, <code>RANK</code>, <code>NTILE</code>, running sums), with percentiles done by ranking because SQLite has none.</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="p">
+        <h2 id="p">The principle behind it</h2>
+        <div class="chapter-body">
+          <div class="principle">
+            <strong>Go back to the source, and test the answer as well as writing the query.</strong>
+            <p>A query that runs isn&rsquo;t the same as a query that&rsquo;s right. Every answer here has a test, and the stock figures are checked against a second, independent calculation.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="chapter" aria-labelledby="k">
+        <h2 id="k">Worth knowing</h2>
+        <div class="chapter-body">
+          <ul>
+            <li>The data is synthetic and says nothing about any real business. No person is in it: a customer is an ID, a segment, a region and a date.</li>
+            <li>Whatever a warehouse can&rsquo;t ship on the day is cancelled, not back-ordered.</li>
+            <li>Money is in rand, excluding VAT, with prices fixed for the two years.</li>
+          </ul>
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <aside class="next-study line-reporting">
+    <div class="wrap">
+      <a href="/work/sa-turnaround/">
+        <strong>Change here: SA Turnaround</strong>
+      </a>
+    </div>
+  </aside>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap">
+    <p>Apart from Firefly, everything here runs on public or invented data. Where a project is based on my work, it was rebuilt from scratch with synthetic data, and no work code or data is in it.</p>
+    <p><a href="mailto:nurahkamal23@gmail.com">nurahkamal23@gmail.com</a> · Nurah Kamal, Cape Town, 2026.</p>
+  </div>
+</footer>
+</body>
+</html>
