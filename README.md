@@ -22,9 +22,10 @@ Opening `index.html` straight from the disk won't load the project list, because
 
 ```bash
 node scripts/check.mjs
+node --test
 ```
 
-It checks every page's title, description, canonical address, share image and structured data, that there's exactly one main heading, that every internal link and sitemap address points at a real file, and that every case study in the project list has a page.
+It checks every page's title, description, canonical address, share image and structured data, that there's exactly one main heading, that every internal link and sitemap address points at a real file, and that every case study in the project list has a page. The tests check the sudoku: every puzzle has exactly one solution, clashes in a row, column or box are found, and filling in the solution one cell at a time never clashes.
 
 ## How it's put together
 
@@ -35,6 +36,9 @@ It checks every page's title, description, canonical address, share image and st
 | `assets/js/map.js` | Draws the map and the work list from the project list, and the line selector. |
 | `assets/css/site.css` | Every style, with the colours as tokens at the top. |
 | `work/` | One folder per case study. |
+| `writing/` | Articles. |
+| `assets/js/sudoku-core.js` | The sudoku rules and solver, shared with the tests. |
+| `assets/js/sudoku.js` | The playable sudoku in the About section. Progress is saved in the browser only. |
 | `assets/fonts/` | Overpass and Overpass Mono, self-hosted (SIL Open Font License, in `OFL.txt`). |
 
 ## Adding a project

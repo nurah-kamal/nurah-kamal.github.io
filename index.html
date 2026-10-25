@@ -23,7 +23,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <link rel="preload" href="/assets/fonts/overpass-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20261026b">
+<link rel="stylesheet" href="/assets/css/site.css?v=20261026c">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -66,6 +66,7 @@
 }
 </script>
 <script type="module" src="/assets/js/map.js?v=20261026b"></script>
+<script type="module" src="/assets/js/sudoku.js?v=20261026c"></script>
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -322,12 +323,12 @@
       </div>
 
       <div class="story">
-        <svg class="sudoku" viewBox="0 0 272 272" aria-hidden="true" focusable="false">
+        <div class="sudoku-game" id="sudoku"><svg class="sudoku" viewBox="0 0 272 272" aria-hidden="true" focusable="false">
 <rect class="s-pattern" x="121" y="1" width="30" height="30"/><rect class="s-pattern" x="31" y="31" width="30" height="30"/><rect class="s-pattern" x="211" y="61" width="30" height="30"/><rect class="s-pattern" x="91" y="91" width="30" height="30"/><rect class="s-pattern" x="1" y="121" width="30" height="30"/><rect class="s-pattern" x="181" y="151" width="30" height="30"/><rect class="s-pattern" x="61" y="181" width="30" height="30"/><rect class="s-pattern" x="241" y="211" width="30" height="30"/><rect class="s-pattern" x="151" y="241" width="30" height="30"/>
 <path class="s-thin" d="M31 1V271M1 31H271"/><path class="s-thin" d="M61 1V271M1 61H271"/><path class="s-thin" d="M121 1V271M1 121H271"/><path class="s-thin" d="M151 1V271M1 151H271"/><path class="s-thin" d="M211 1V271M1 211H271"/><path class="s-thin" d="M241 1V271M1 241H271"/>
 <text x="16" y="22">1</text><text x="76" y="22">3</text><text x="106" y="22">4</text><text x="136" y="22">5</text><text x="226" y="22">8</text><text x="46" y="52">5</text><text x="196" y="52">1</text><text x="46" y="82">8</text><text x="196" y="82">4</text><text x="226" y="82">5</text><text x="106" y="112">5</text><text x="16" y="142">5</text><text x="106" y="142">8</text><text x="136" y="142">9</text><text x="196" y="142">2</text><text x="76" y="172">1</text><text x="106" y="172">2</text><text x="196" y="172">5</text><text x="256" y="172">7</text><text x="46" y="202">4</text><text x="76" y="202">5</text><text x="256" y="202">2</text><text x="46" y="232">7</text><text x="226" y="232">4</text><text x="256" y="232">5</text><text x="166" y="262">5</text>
 <path class="s-thick" d="M91 1V271M181 1V271M1 91H271M1 181H271"/><rect class="s-thick" x="1" y="1" width="270" height="270" rx="6"/>
-</svg>
+</svg></div>
         <div class="story-text">
           <h3>How I got here</h3>
           <p>My love for data started with maths, and probably with sudoku, which I loved as a child. That&rsquo;s where the pattern-spotting began. The more maths I did, the more I realised that what I enjoyed most was spotting patterns and analysing them. That turned into a love for statistics, and statistics led me to data.</p>
