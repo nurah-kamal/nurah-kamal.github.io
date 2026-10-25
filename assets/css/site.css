@@ -787,3 +787,19 @@ details.table-view summary { cursor: pointer; font-weight: 700; min-height: 44px
 .sk-btn:active { transform: translateY(1px); }
 .sk-status { min-height: 1.4em; font-size: 0.9rem; color: var(--ink-soft); }
 .is-solved .sk-status { color: var(--plum); font-weight: 700; }
+
+/* ---------- reports loaded from their repositories ---------- */
+
+.report { padding-bottom: clamp(3.5rem, 8vw, 6rem); max-width: 72rem; }
+.report-status { color: var(--ink-soft); }
+.report-body { display: grid; gap: 1rem; }
+.report-body h2 { font-size: clamp(1.6rem, 3.4vw, 2.1rem); font-weight: 800; letter-spacing: -0.025em; }
+.report-body h3 { font-size: 1.35rem; font-weight: 800; letter-spacing: -0.015em; margin-top: 1.5rem; }
+.report-body p, .report-body ul { max-width: 70ch; }
+.report-body ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 0.45rem; }
+.report-body li::marker { color: var(--berry); }
+.report-body .table-scroll { background: #fff; border-radius: var(--radius); padding: 0.25rem 0.5rem; }
+.report-body .data-table { font-size: 0.9rem; }
+.report-body .data-table th, .report-body .data-table td { text-align: left; white-space: nowrap; }
+.report-body .data-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.report-body code { font-family: var(--mono); font-size: 0.85em; }
