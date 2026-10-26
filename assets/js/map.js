@@ -1,4 +1,4 @@
-import { LINES, STATIONS } from './projects.js?v=20261026f';
+import { LINES, STATIONS } from './projects.js?v=20261026i';
 
 const SVG = 'http://www.w3.org/2000/svg';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -48,7 +48,7 @@ function drawMap(svg, W) {
   const GAP = Math.min(300, ...LINES.map((line, i) => {
     const n = byLine(line.id).length;
     const dx = Math.abs(TOP + i * ROW - (meetTop + i * TRACK));
-    return n > 1 ? (MEET - dx - 140 - FIRST) / (n - 1) : Infinity;
+    return n > 1 ? (MEET - dx - 120 - FIRST) / (n - 1) : Infinity;
   }));
   svg.setAttribute('viewBox', `20 10 ${W} ${HEIGHT}`);
   svg.dataset.w = W;
@@ -91,7 +91,9 @@ function drawMap(svg, W) {
         a.append(el('svg:circle', { class: 'm-mark', cx: x, cy: y, r: 13 }));
       }
       const above = (k + i) % 2 === 0;
-      a.append(el('svg:text', { class: 'm-name', x, y: above ? y - 32 : y + 50 }, s.name));
+      // Above the BI line, a centred name would run into the tall SA Turnaround capsule, so it starts at its stop instead.
+      const clear = above && line.id === 'bi' && k > 0;
+      a.append(el('svg:text', clear ? { class: 'm-name', x: x - 12, y: y - 32, style: 'text-anchor: start' } : { class: 'm-name', x, y: above ? y - 32 : y + 50 }, s.name));
       a.dataset.x = x;
       stations.append(a);
     });
